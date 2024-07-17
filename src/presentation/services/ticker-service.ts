@@ -8,7 +8,7 @@ export class TicketService {
         private readonly wssService = WssService.instance
     ){}
 
-    public readonly _tickets: Ticket[] = [
+    public  _tickets: Ticket[] = [
         {id: UuidAdapter.v4(), number:1 ,createdAt: new Date(), done: false},
         {id: UuidAdapter.v4(), number:2 ,createdAt: new Date(), done: false},
         {id: UuidAdapter.v4(), number:3 ,createdAt: new Date(), done: false},
@@ -68,7 +68,7 @@ export class TicketService {
         const ticket = this._tickets.find(t => t.id === id)
         if(!ticket) return {status: 'error', message: 'No se encontro el ticket'}
 
-        this._tickets.map(ticket => {
+        this._tickets =this._tickets.map(ticket => {
             if(ticket.id === id){
                 ticket.done = true
             }
