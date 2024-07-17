@@ -76,7 +76,6 @@ function connectToWebSockets() {
       //console.log(event.data);
       const {type,payload} = JSON.parse( event.data );
       if(type !== "on-ticket-count-changed") return;
-      console.log(payload)
       checkTicketCount(payload);
     };
   
