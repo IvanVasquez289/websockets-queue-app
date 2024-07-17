@@ -9,11 +9,11 @@ export class TicketService {
     ){}
 
     public readonly _tickets: Ticket[] = [
-        // {id: UuidAdapter.v4(), number:1 ,createdAt: new Date(), done: false},
-        // {id: UuidAdapter.v4(), number:2 ,createdAt: new Date(), done: false},
-        // {id: UuidAdapter.v4(), number:3 ,createdAt: new Date(), done: false},
-        // {id: UuidAdapter.v4(), number:4 ,createdAt: new Date(), done: false},
-        // {id: UuidAdapter.v4(), number:5 ,createdAt: new Date(), done: false},
+        {id: UuidAdapter.v4(), number:1 ,createdAt: new Date(), done: false},
+        {id: UuidAdapter.v4(), number:2 ,createdAt: new Date(), done: false},
+        {id: UuidAdapter.v4(), number:3 ,createdAt: new Date(), done: false},
+        {id: UuidAdapter.v4(), number:4 ,createdAt: new Date(), done: false},
+        {id: UuidAdapter.v4(), number:5 ,createdAt: new Date(), done: false},
     ]
 
 
@@ -56,10 +56,11 @@ export class TicketService {
         ticket.handledAtDesk = desk
         ticket.handledAt = new Date()
         
-        this.workingOnTickets.unshift({...ticket})
+        this.workingOnTickets.unshift({...ticket}) 
 
         //TODO: WS
 
+        this.wssService.sendMessage('on-ticket-count-changed', this.pendingTickets.length)
         return {status: 'success', ticket}   
     }
 
